@@ -4,7 +4,7 @@ import { getAllTodo, addTodo, deleteTodo, editTodo } from "../controllers/todo.c
 
 const route = Router()
 
-route.get("/todos/:id", authenticate, getAllTodo)
+route.get("/todos", authenticate, getAllTodo)
 route.post("/todo", authenticate, addTodo)
 route.delete("/todo/:id", deleteTodo,)
 route.put("/todo/:id", editTodo,)

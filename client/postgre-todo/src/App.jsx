@@ -44,7 +44,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const todos = await instance.get('/todos/5')
+      const todos = await instance.get('/todos')
       console.log(todos)
       setTodos(todos.data)
     })()
@@ -76,7 +76,7 @@ const App = () => {
       </div>
       <div>
         <div className="space-y-3">
-          <h4 className='text-center text-gray-400 text-lg'>No todos found ...</h4>
+          {!!!todos.length && <h4 className='text-center text-gray-400 text-lg'>No todos found ...</h4>}
           {todos?.map(item => (
             <div
               key={item.id}

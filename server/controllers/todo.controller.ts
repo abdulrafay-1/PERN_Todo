@@ -2,15 +2,17 @@ import { Request, Response } from "express"
 import { prisma } from "../script"
 import { AuthenticatedRequest } from "../types"
 
-export const getAllTodo = async (req: Request, res: Response) => {
-    const { id } = req.params
-    if (!id) {
-        res.status(400).json({ message: "ID is required" })
-        return
-    }
+export const getAllTodo = async (req: AuthenticatedRequest, res: Response) => {
+    // const { id } = req.params
+    // if (!id) {
+    //     res.status(400).json({ message: "ID is required" })
+    //     return
+    // }
+    const user = req.user
+
     try {
         const todo = await prisma.todo.findMany({
-            where: { userId: Number(id) },
+            where: { userId: Number(user?.id) },
         })
         if (!todo) {
             res.status(404).json({ message: "Todo not found" })
